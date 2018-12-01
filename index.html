@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf8">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/p5.js"></script>
+    <script src="class.js"></script>
+	  <script src="script.js"></script>
+	  <style>
+			.legend tr {
+				border: 1px solid black;
+			}
+	
+			#canvas {
+				float: left;
+				padding-left: 150px;
+				padding-top: 100px;
+			}
+	
+			#legend {
+				padding-right: 150px;
+				padding-top: 180px;
+				float: right;
+				top: 0;
+				right: 0;
+				width: 800px;
+			}
+	
+			.legend-color {
+				width: 30px;
+				height: 30px;
+			}
+	
+			td {
+				border: 1px solid black;
+				font-size: 14px;
+				padding-left: 5px;
+			}
+		</style>
+</head>
+<body>
+		<div class="main">
+				<div id="canvas">
+					<!-- //aystex tpvum e canvasy -->
+				</div>
+				<table id="legend">
+					<tr>
+						<td class="legend-color">Գույն</td>
+						<td>Անվանում</td>
+						<td>Շարժվում է</td>
+						<td>Ուտում է</td>
+						<td>Բազմանում է</td>
+						<td>Սատկում է</td>
+					</tr>
+		
+					<tr>
+						<td class="legend-color" style="background-color:gray"></td>
+						<td>Դատարկ վանդակներ</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="legend-color" style="background-color:green"></td>
+						<td>Խոտ</td>
+						<td></td>
+						<td></td>
+						<td>Մոտակա 8 վանդակներում, 4 տակտը մեկ</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="legend-color" style="background-color:yellow"></td>
+						<td>Stark</td>
+						<td>Մոտակա 8 վանդակներում, էներգիան քչանում է 1֊ով</td>
+						<td>Խոտերին, մոտակա 8 վանդակներում, շարժվելիս էներգիան ավելանում է 2֊ով</td>
+						<td>Բազմանում է մոտակա տարածքներում, երբ էներգիան 10֊ից ավել է</td>
+						<td>Սատկում է, երբ էներգիան փոքր է 0֊ից</td>
+					</tr>
+					<tr>
+						<td class="legend-color" style="background-color:black"></td>
+						<td>Tywin_Lannister</td>
+						<td>Մոտակա 8 վանդակներում, էներգիան քչանում է 2֊ով</td>
+						<td>Stark, մոտակա 8 վանդակներում, շարժվելիս էներգիան ավելանում է 2֊ով</td>
+						<td>Բազմանում է մոտակա տարածքներում, երբ էներգիան 8֊ից ավել է</td>
+						<td>Սատկում է, երբ էներգիան փոքր է 0֊ից</td>
+					</tr>
+					<tr>
+						<td class="legend-color" style="background-color:gray"></td>
+						<td>Jon_Snow</td>
+						<td>2 քայլով` մոտակա 8 վանդակներում, էներգիան քչանում է 3֊ով</td>
+						<td>Tywin_Lannister` 2 քայլով` մոտակա 8 վանդակներում, շարժվելիս էներգիան ավելանում է 3֊ով</td>
+						<td>Բազմանում է մոտակա 8 տարածքներում` 2 քայլով, երբ էներգիան 21֊ից ավել է</td>
+						<td>Սատկում է, երբ էներգիան փոքր է 0֊ից</td>
+					</tr>
+					<tr>
+							<td class="legend-color" style="background-color:red"></td>
+							<td>Daenerys_Targaryen</td>
+							<td>2 քայլով` մոտակա 8 վանդակներում, էներգիան քչանում է 3֊ով</td>
+							<td>Jon_Snow  2 քայլով` մոտակա 8 վանդակներում, շարժվելիս էներգիան ավելանում է 3֊ով</td>
+							<td>Բազմանում է մոտակա 8 տարածքներում` 2 քայլով, երբ էներգիան 21֊ից ավել է</td>
+							<td>Սատկում է, երբ էներգիան փոքր է 0֊ից</td>
+						</tr>
+				</table>
+			</div>
+
+</body>
+</html>
