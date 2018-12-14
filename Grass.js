@@ -1,18 +1,13 @@
-class Grass extends LivingCreature {
-    
-//sharjvuma gtnelov 0 index ov vandakner 
+var LivingCreature = require("./LivingCreature.js");
+module.exports = class Grass extends LivingCreature {
+
     mul() {
         this.multiply++;
-        var emptyCells = this.chooseCell(0);
-        var newCell = random(emptyCells);
-
-        if (newCell && this.multiply >= 3) {
-            var newX = newCell[0];
-            var newY = newCell[1];
-            matrix[newY][newX] = this.index;
-
-            var newGrass = new Grass(newX, newY, this.index);
+        var newCell = random(this.yntrelVandak(0));
+        if(this.multiply >= 8 && newCell) {
+            var newGrass = new Grass(newCell[0],newCell[1], this.index);
             grassArr.push(newGrass);
+            matrix[newCell[1]][newCell[0]] = this.index;
             this.multiply = 0;
         }
     }

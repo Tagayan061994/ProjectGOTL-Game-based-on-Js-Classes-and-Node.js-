@@ -1,14 +1,50 @@
+var express = require("express");
+var app = express();
+
+app.use(express.static("ProjectGOTL"));
+
+app.get("/", function(req, res){
+   res.redirect("your_project_html_name");
+});
+
+app.listen(3000, function(){
+   console.log("Example is running on port 3000");
+});
+
+
+function genMatrix(w, h) {
+    var matrix = [];
+    for(var y = 0; y < h; y++) {
+        matrix[y] = [];
+        for(var x = 0; x < w; x++) {
+            var r = random(100);
+            if     (r < 20) r = 0;
+            else if(r < 65) r = 1;
+            else if(r < 90) r = 2;
+            else if(r < 100)r = 3;
+            matrix[y][x] = r;
+        }
+    }
+    return matrix;
+}       
+var matrix;
+var w = 30;
+var h = 30;
+var side = 24;
 var grassArr = [];
 var starkArr = [];
 var tywin_LannisterArr = [];
 var jon_SnowArr = [];
 var daenerys_TargaryenArr = [];
 
-function setup() {
-    frameRate(5);
-    createCanvas(matrix[0].length * side, matrix.length * side);
-    background('#33FFFF');
+var Grass = require("./Grass.js");
+var Stark = require("./Stark.js");
+var Tywin_Lannister = require("./Tywin_Lannister.js");
+var Jon_Snow = require("./Jon_Snow.js");
+var Daenerys_Targaryen = require("./Daenerys_Targaryen");
 
+
+    matrix = genMatrix(w, h);
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
 
@@ -29,44 +65,10 @@ function setup() {
             }
         }
     }
-    //    console.log(grassArr);
-}
 
-
-
-function draw() {
-
-    for (var y = 0; y < matrix.length; y++) {
-        for (var x = 0; x < matrix[y].length; x++) {
-
-            if (matrix[y][x] == 0) {
-                fill("#33FFFF");
-                rect(x * side, y * side, side, side);
-            }
-
-            else if (matrix[y][x] == 1) {
-                fill("green");
-                rect(x * side, y * side, side, side);
-            }
-
-            else if (matrix[y][x] == 2) {
-                fill("yellow");
-                rect(x * side, y * side, side, side);
-            }
-            else if (matrix[y][x] == 3) {
-                fill("black");
-                rect(x * side, y * side, side, side);
-            }
-            else if (matrix[y][x] == 4) {
-                fill("gray");
-                rect(x * side, y * side, side, side);
-            }
-            else if (matrix[y][x] == 5) {
-                fill("red");
-                rect(x * side, y * side, side, side);
-            }
-        }
-    }
+setInterval(drawserever(), 3000);
+function drawserever() {
+ 
     for (var i in grassArr) {
         grassArr[i].mul();
     }
