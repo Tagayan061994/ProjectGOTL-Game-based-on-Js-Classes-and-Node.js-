@@ -30,8 +30,6 @@ module.exports = class LivingCreature {
 
        ];
 
- 
-
     }
 
     chooseCell(ch) {

@@ -27,8 +27,8 @@ function genMatrix(w, h) {
     }
     return matrix;
 }
-//var w = 30;
-//var h = 30;
+var w = 30;
+var h = 30;
 grassArr = [];
 starkArr = [];
 tywin_LannisterArr = [];

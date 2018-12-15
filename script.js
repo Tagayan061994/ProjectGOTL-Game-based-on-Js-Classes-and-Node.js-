@@ -46,33 +46,6 @@ function drawMatrix(matrix) {
             }
         }
     }
-    for (var i in grassArr) {
-        grassArr[i].mul();
-    }
-    for (var i in starkArr) {
-        starkArr[i].move();
-        starkArr[i].mul();
-        starkArr[i].eat();
-        starkArr[i].die();
-    }
-    for (var i in tywin_LannisterArr) {
-        tywin_LannisterArr[i].move();
-        tywin_LannisterArr[i].mul();
-        tywin_LannisterArr[i].eat();
-        tywin_LannisterArr[i].die();
-    }
-    for (var i in jon_SnowArr) {
-        jon_SnowArr[i].move();
-        jon_SnowArr[i].mul();
-        jon_SnowArr[i].eat();
-        jon_SnowArr[i].die();
-    }
-    for (var i in daenerys_TargaryenArr) {
-        daenerys_TargaryenArr[i].move();
-        daenerys_TargaryenArr[i].mul();
-        daenerys_TargaryenArr[i].eat();
-        daenerys_TargaryenArr[i].die();
-    }
 }
 socket.on("matrix", drawMatrix);
 
