@@ -1,40 +1,19 @@
-var grassArr = [];
-var starkArr = [];
-var tywin_LannisterArr = [];
-var jon_SnowArr = [];
-var daenerys_TargaryenArr = [];
+var side = 20;
+var socket =io();
+var m = 20;
+var n = 20;
+
 
 function setup() {
     frameRate(5);
-    createCanvas(matrix[0].length * side, matrix.length * side);
+   // createCanvas(matrix[0].length * side, matrix.length * side);
+    createCanvas(m * side, n * side);
     background('#33FFFF');
-
-    for (var y = 0; y < matrix.length; y++) {
-        for (var x = 0; x < matrix[y].length; x++) {
-
-            if (matrix[y][x] == 1) {
-                grassArr.push(new Grass(x, y, 1));
-            }
-            else if (matrix[y][x] == 2) {
-                starkArr.push(new Stark(x, y, 2));
-            }
-            else if (matrix[y][x] == 3) {
-                tywin_LannisterArr.push(new Tywin_Lannister(x, y, 3));
-            }
-            else if (matrix[y][x] == 4) {
-                jon_SnowArr.push(new Jon_Snow(x, y, 4));
-            }
-            else if (matrix[y][x] == 5) {
-                daenerys_TargaryenArr.push(new Daenerys_Targaryen(x, y, 5));
-            }
-        }
-    }
-    //    console.log(grassArr);
 }
 
 
 
-function draw() {
+function drawMatrix(matrix) {
 
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
@@ -95,6 +74,7 @@ function draw() {
         daenerys_TargaryenArr[i].die();
     }
 }
+socket.on("matrix", drawMatrix);
 
 
 

@@ -38,7 +38,7 @@ module.exports = class Daenerys_Targaryen extends LivingCreature {
     move() {
         this.energy--;
         var fullCells = this.chooseCell(0);
-        var newCell_1 = random(fullCells);
+        var newCell_1 = fullCells[Math.floor(Math.random() * fullCells.length)];
 
         if (newCell_1) {
             var newX = newCell_1[0];
@@ -55,7 +55,8 @@ module.exports = class Daenerys_Targaryen extends LivingCreature {
     mul() {
         this.multiply++;
         var emptyCells = this.chooseCell(0);
-        var newCell = random(emptyCells);
+        var newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+
         if (newCell && this.multiply > 5) {
             var newX = newCell[0];
             var newY = newCell[1];
@@ -68,10 +69,12 @@ module.exports = class Daenerys_Targaryen extends LivingCreature {
 
 
     eat() {
-        var jon_Snow = random(this.chooseCell(4));
-        if (jon_Snow) {
-            var newX = jon_Snow[0];
-            var newY = jon_Snow[1];
+        //var jon_Snow = random(this.chooseCell(4));
+        var fullCells = this.chooseCell(4);
+        var Daenerys_Targaryen = fullCells[Math.floor(Math.random() * fullCells.length)];
+        if (Daenerys_Targaryen) {
+            var newX = Daenerys_Targaryen[0];
+            var newY = Daenerys_Targaryen[1];
             matrix[newY][newX] = 5;
             matrix[this.y][this.x] = 0;
             for (var i in jon_SnowArr) {

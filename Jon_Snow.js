@@ -1,6 +1,6 @@
 var LivingCreature = require("./LivingCreature.js");
 //--------------------------Jon_Snow__________________________________________
-class Jon_Snow extends LivingCreature {
+module.exports = class Jon_Snow extends LivingCreature {
     constructor(x, y, index) {
         super(x, y, index);
         this.energy = 8;
@@ -38,7 +38,7 @@ class Jon_Snow extends LivingCreature {
     move() {
         this.energy--;
         var fullCells = this.chooseCell(0);
-        var newCell_1 = random(fullCells);
+        var newCell_1 = fullCells[Math.floor(Math.random() * fullCells.length)];
 
         if (newCell_1) {
             var newX = newCell_1[0];
@@ -55,7 +55,8 @@ class Jon_Snow extends LivingCreature {
     mul() {
         this.multiply++;
         var emptyCells = this.chooseCell(0);
-        var newCell = random(emptyCells);
+        var newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+        
         if (newCell && this.multiply > 3) {
             var newX = newCell[0];
             var newY = newCell[1];
@@ -68,7 +69,9 @@ class Jon_Snow extends LivingCreature {
 
 
     eat() {
-        var jon_Snow = random(this.chooseCell(3));
+       // var jon_Snow = random(this.chooseCell(3));
+        var emptyCells = this.chooseCell(3);
+        var Deanerys = emptyCells[Math.floor(Math.random() * emptyCells.length)];
         if (jon_Snow) {
             var newX = jon_Snow[0];
             var newY = jon_Snow[1];

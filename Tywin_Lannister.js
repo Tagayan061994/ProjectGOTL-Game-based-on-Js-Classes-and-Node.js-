@@ -1,6 +1,6 @@
 var LivingCreature = require("./LivingCreature.js");
 //--------------------------Tywin_Lannister__________________________________________
-class Tywin_Lannister extends LivingCreature {
+module.exports = class Tywin_Lannister extends LivingCreature {
     constructor(x, y, index) {
         super(x, y, index);
         this.energy = 8;
@@ -38,7 +38,7 @@ class Tywin_Lannister extends LivingCreature {
     move() {
         this.energy--;
         var fullCells = this.chooseCell(0);
-        var newCell_1 = random(fullCells);
+        var newCell_1 = fullCells[Math.floor(Math.random() * fullCells.length)];
 
         if (newCell_1) {
             var newX = newCell_1[0];
@@ -55,7 +55,8 @@ class Tywin_Lannister extends LivingCreature {
     mul() {
         this.multiply++;
         var emptyCells = this.chooseCell(0);
-        var newCell = random(emptyCells);
+        var newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+
         if (newCell && this.multiply > 3) {
             var newX = newCell[0];
             var newY = newCell[1];
@@ -67,11 +68,13 @@ class Tywin_Lannister extends LivingCreature {
     }
 
     eat() {
-        var graseat = random(this.chooseCell(2));
-        if (graseat) {
+        //var graseat = random(this.chooseCell(2));
+        var fullCells = this.chooseCell(2);
+        var Tywin_Lannister = fullCells[Math.floor(Math.random() * fullCells.length)];
+        if (Tywin_Lannister) {2
             this.energy++;
-            var newX = graseat[0];
-            var newY = graseat[1];
+            var newX = Tywin_Lannister[0];
+            var newY = Tywin_Lannister[1];
             matrix[newY][newX] = 3;
             matrix[this.y][this.x] = 0;
             for (var i in starkArr) {

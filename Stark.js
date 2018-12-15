@@ -24,7 +24,7 @@ module.exports = class Stark extends LivingCreature {
     move() {
         this.energy--;
         var fullCells = this.chooseCell(0);
-        var newCell_1 = random(fullCells);
+        var newCell_1 = fullCells[Math.floor(Math.random() * fullCells.length)];
 
         if (newCell_1) {
             var newX = newCell_1[0];
@@ -41,7 +41,7 @@ module.exports = class Stark extends LivingCreature {
     mul() {
         this.multiply++;
         var emptyCells = this.chooseCell(0);
-        var newCell = random(emptyCells);
+        var newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)];
         if (newCell && this.multiply > 6) {
             var newX = newCell[0];
             var newY = newCell[1];
@@ -54,7 +54,9 @@ module.exports = class Stark extends LivingCreature {
     }
 
     eat() {
-        var gras = random(this.chooseCell(1));
+        //var gras = random(this.chooseCell(1));
+        var fullCells = this.chooseCell(1);
+        var gras = fullCells[Math.floor(Math.random() * fullCells.length)];
         if (gras) {
             var newX = gras[0];
             var newY = gras[1];
