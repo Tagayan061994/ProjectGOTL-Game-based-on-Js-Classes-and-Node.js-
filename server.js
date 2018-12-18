@@ -35,6 +35,9 @@ tywin_LannisterArr = [];
 jon_SnowArr = [];
 daenerys_TargaryenArr = [];
 
+Weather = "Amar";
+Weatherinit = 1;
+
 var Grass = require("./Grass.js");
 var Stark = require("./Stark.js");
 var Tywin_Lannister = require("./Tywin_Lannister.js");
@@ -64,7 +67,7 @@ for (var y = 0; y < matrix.length; y++) {
     }
 }
 
-setInterval(drawserever, 3000);
+
 function drawserever() {
 
     for (var i in grassArr) {
@@ -97,5 +100,26 @@ function drawserever() {
     io.sockets.emit("matrix", matrix);
 }
 
+function draw_wheater() {
+    Weatherinit++;
+    if(Weatherinit == 5){
+        Weatherinit = 1;
+    }
+    if(Weatherinit == 4){
+        Weather = "Autumn";
+    }
+    if(Weatherinit == 3){
+        Weather = "Winter";
+    }
+    if(Weatherinit == 2){
+        Weather = "Spring";
+    }
+    if(Weatherinit == 1){
+        Weather = "Summer";
+    }
+    io.sockets.emit("exanak", Weather);
+}
+setInterval(drawserever, 3000);
+setInterval(draw_wheater, 3000);
 
 

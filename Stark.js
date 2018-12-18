@@ -40,17 +40,31 @@ module.exports = class Stark extends LivingCreature {
 
     mul() {
         this.multiply++;
-        var emptyCells = this.chooseCell(0);
-        var newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)];
-        if (newCell && this.multiply > 6) {
-            var newX = newCell[0];
-            var newY = newCell[1];
-            matrix[newY][newX] = this.index;
-            var newGrass = new Stark(newX, newY, this.index);
-            starkArr.push(newGrass);
-            this.multiply = 0;
+        if (Weather == "Winter") {
+            this.multiply += 4;
+            var emptyCells = this.chooseCell(0);
+            var newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+            if (newCell && this.multiply > 6) {
+                var newX = newCell[0];
+                var newY = newCell[1];
+                matrix[newY][newX] = this.index;
+                var newGrass = new Stark(newX, newY, this.index);
+                starkArr.push(newGrass);
+                this.multiply = 0;
+            }
         }
-        //console.log(emptyCells);
+        else if(Weather != "Winter"){
+            var emptyCells = this.chooseCell(0);
+            var newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+            if (newCell && this.multiply > 6) {
+                var newX = newCell[0];
+                var newY = newCell[1];
+                matrix[newY][newX] = this.index;
+                var newGrass = new Stark(newX, newY, this.index);
+                starkArr.push(newGrass);
+                this.multiply = 0;
+            }
+        }
     }
 
     eat() {
