@@ -71,7 +71,7 @@ module.exports = class Jon_Snow extends LivingCreature {
     eat() {
        // var jon_Snow = random(this.chooseCell(3));
         var emptyCells = this.chooseCell(3);
-        var Deanerys = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+        var jon_Snow = emptyCells[Math.floor(Math.random() * emptyCells.length)];
         if (jon_Snow) {
             var newX = jon_Snow[0];
             var newY = jon_Snow[1];

@@ -45,6 +45,7 @@ module.exports = class Stark extends LivingCreature {
             var emptyCells = this.chooseCell(0);
             var newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)];
             if (newCell && this.multiply > 6) {
+                Starkinit++;
                 var newX = newCell[0];
                 var newY = newCell[1];
                 matrix[newY][newX] = this.index;

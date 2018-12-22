@@ -2,13 +2,14 @@ var express = require('express');
 var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
+var fs = require('fs');
 
 app.use(express.static("."));
 app.get('/', function (req, res) {
     res.redirect('index.html');
 });
 server.listen(3000);
-io.on('connection' , function (socket){
+io.on('connection', function (socket) {
 
 });
 
@@ -19,24 +20,28 @@ function genMatrix(w, h) {
         for (var x = 0; x < w; x++) {
             var r = Math.floor(Math.random() * 100);
             if (r < 20) r = 0;
-            else if (r < 65) r = 1;
-            else if (r < 90) r = 2;
-            else if (r < 100) r = 3;
+            else if (r < 40) r = 1;
+            else if (r < 60) r = 2;
+            else if (r < 75) r = 3;
+            else if (r < 85) r = 4;
+            else if (r < 100) r = 5;
             matrix[y][x] = r;
         }
     }
     return matrix;
 }
-var w = 30;
-var h = 30;
+var w = 50;
+var h = 60;
 grassArr = [];
 starkArr = [];
 tywin_LannisterArr = [];
 jon_SnowArr = [];
 daenerys_TargaryenArr = [];
 
-Weather = "Amar";
+Weather = "Summer";
 Weatherinit = 1;
+Grassinit = 0;
+Starkinit = 0;
 
 var Grass = require("./Grass.js");
 var Stark = require("./Stark.js");
@@ -51,9 +56,11 @@ for (var y = 0; y < matrix.length; y++) {
 
         if (matrix[y][x] == 1) {
             grassArr.push(new Grass(x, y, 1));
+            Grassinit++;
         }
         else if (matrix[y][x] == 2) {
             starkArr.push(new Stark(x, y, 2));
+            Starkinit++;
         }
         else if (matrix[y][x] == 3) {
             tywin_LannisterArr.push(new Tywin_Lannister(x, y, 3));
@@ -102,23 +109,54 @@ function drawserever() {
 
 function draw_wheater() {
     Weatherinit++;
-    if(Weatherinit == 5){
+    if (Weatherinit == 5) {
         Weatherinit = 1;
     }
-    if(Weatherinit == 4){
+    if (Weatherinit == 4) {
         Weather = "Autumn";
     }
-    if(Weatherinit == 3){
+    if (Weatherinit == 3) {
         Weather = "Winter";
     }
-    if(Weatherinit == 2){
+    if (Weatherinit == 2) {
         Weather = "Spring";
     }
-    if(Weatherinit == 1){
+    if (Weatherinit == 1) {
         Weather = "Summer";
     }
     io.sockets.emit("exanak", Weather);
 }
+
+statistics = {"objarr":[]};
+
+
+setInterval(function () {
+    statistics.objarr.push({
+        "Grass_Born": Grassinit,
+        "Stark_Born": Starkinit,
+        "Jon_Snow_Quantinty": jon_SnowArr.length,
+        "Tywin_Lannister_Quantinty": jon_SnowArr.length,
+    })
+    fs.writeFile("statistics.json", JSON.stringify(statistics), function (err) {
+        if (err) throw err;
+    })
+}, 13000);
+
+io.on('connection', function (socket) {
+    // for(var i in messages) {
+    //   io.sockets.emit("display message", messages[i]);
+    // }
+    // socket.on("send message", function (data) {
+    //     messages.push(data);
+    //     io.sockets.emit("display message", data);
+    // });
+    socket.on("fire", function () {
+        matrix[this.y][this.x] = 0;
+        console.log(matrix[this.y][this.x]);
+        console.log("privet rob");
+        //io.sockets.emit("delete from your message");
+    });
+ });
 setInterval(drawserever, 3000);
 setInterval(draw_wheater, 3000);
 

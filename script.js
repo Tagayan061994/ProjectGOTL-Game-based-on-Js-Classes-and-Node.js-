@@ -3,6 +3,7 @@ var socket = io();
 var m = 20;
 var n = 20;
 var weather = "Summer";
+//var fire = document.getElementById("fire");
 
 function setup() {
     frameRate(5);
@@ -25,10 +26,12 @@ function drawWeather(w) {
         p.innerText = "Spring";
     }
 }
-
+function FireButton () {
+    socket.emit("fire");
+}
+//fire.onclick = FireButton;
 
 function drawMatrix(matrix) {
-    var p = document.getElementById("seasons");
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
 
@@ -40,7 +43,6 @@ function drawMatrix(matrix) {
             else if (matrix[y][x] == 1) {
                 if (weather == "Summer") {
                     fill("green");
-                    //  p.innerText = "Summer";
                 } else if (weather != "Summer") {
                     fill("#A79F15");
                 }
@@ -50,8 +52,7 @@ function drawMatrix(matrix) {
             else if (matrix[y][x] == 2) {
                 if (weather == "Winter") {
                     fill("#696968");
-                    // p.innerText = "Winter";
-                } else if (weather != "Summer") {
+                } else if (weather != "Winter") {
                     fill("Yellow");
                 }
                 rect(x * side, y * side, side, side);
@@ -71,6 +72,7 @@ function drawMatrix(matrix) {
         }
     }
 }
+
 socket.on("matrix", drawMatrix);
 socket.on("exanak", drawWeather);
 socket.on("exanak", function (w) {
